@@ -1,9 +1,53 @@
 import React from 'react';
 import { useState } from 'react';
 import { RegisterStyle } from './RegisterStyle';
-function RenderRegister({}) {
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import PasswordCheck from '../Test/TestPassword';
+
+function RenderRegister({}) {
+  const { register, handleSubmit } = useForm();
+  const [senha,setSenha] = useState('')
+  const [confirmarSenha,setConfirmarSenha] = useState('')
+
+  const notify = (a) => {
+    toast(a);
+  };
   
+  const navigate = useNavigate();
+  async function onSubmit (data){
+    
+    if(PasswordCheck(data.senha,data.confirmarSenha) == true){
+      const requestData = {
+          "email":  data.email,
+          "password": data.senha,
+          "name": data.nome,
+          "bio": data.bio,
+          "contact": data.contato,
+          "course_module": data.modulo
+          }
+    
+        await axios.post('https://kenziehub.herokuapp.com/users', requestData)
+          .then(response => {
+            console.log(requestData)
+            console.log(response);
+            notify('Conta Criada')
+            setTimeout(() => {
+              navigate('/login');
+      
+            }, 3000);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    }else {
+      notify(PasswordCheck(data.senha,data.confirmarSenha))
+
+    }  }
   return (
     <RegisterStyle>
       <section>
@@ -19,33 +63,65 @@ function RenderRegister({}) {
   <path d="M122.87 14.0781C122.879 15.9526 121.596 16.9353 120.204 16.9353C118.739 16.9353 117.792 15.9071 117.783 14.2601V6.05225H113.907V14.9516C113.916 18.2184 115.827 20.2112 118.639 20.2112C120.741 20.2112 122.251 19.1283 122.879 17.4904H123.025V20.0292H126.746V6.05225H122.87V14.0781Z" fill="#FF577F"/>
   <path d="M130.432 20.0292H134.254V17.7907H134.427C134.964 18.9555 136.138 20.2567 138.394 20.2567C141.579 20.2567 144.063 17.7361 144.063 13.0589C144.063 8.25435 141.47 5.87026 138.404 5.87026C136.065 5.87026 134.946 7.2625 134.427 8.39994H134.309V1.39326H130.432V20.0292ZM134.227 13.0407C134.227 10.5474 135.282 8.95502 137.166 8.95502C139.086 8.95502 140.105 10.6202 140.105 13.0407C140.105 15.4794 139.068 17.1719 137.166 17.1719C135.301 17.1719 134.227 15.534 134.227 13.0407Z" fill="#FF577F"/>
   </svg>
-    <button className='back'>Voltar</button>
+      <Link to="/login">
+        <button className='back' onClick={()=>{localStorage.clear()}}>Voltar</button>
+      </Link>
       </div>
-      <div className='forms'>
-      <h1>Crie Sua Conta</h1>
-      <h3>Rapido e grátis, vamos nessa</h3>
-      <h2>Nome</h2>
-      <input placeholder='Digite aqui seu nome' type="text" id="" />
-      <h2>Email</h2>
-      <input placeholder='Digite aqui seu email' type="email" name="" id="" />
-      <h2>Senha</h2>
-      <input placeholder='Digite aqui sua senha' type="password" name="" id="" />
-      <h2>Confirmar Senha</h2>
-      <input placeholder='Digite novamente sua senha' type="password" name="" id="" />
-      <h2>Bio</h2>
-      <input placeholder='Fale sobre você' type="text" name="" id="" />
-      <h2>Contato</h2>
-      <input placeholder='Opção de contato' type="text" name="" id="" />
-      <h2>Selecione o módulo</h2>
-      <select id="">
-        <option hidden>Selecione um módulo</option>
-        <option value="Primeiro módulo (Introdução ao Frontend)">Primeiro módulo</option>
-        <option value="Segundo módulo (Frontend Avançado)">Segundo módulo</option>
-        <option value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo</option>
-        <option value="Quarto módulo (Backend Avançado)">Quarto módulo</option>
-      </select>
-      <button className='sign-up'>Cadastrar</button>
-        </div>
+      <form className='forms' onSubmit={handleSubmit(onSubmit)}>
+          <h1>Crie Sua Conta</h1>
+          <h3>Rapido e grátis, vamos nessa</h3>
+          <h2>Nome</h2>
+          <input
+            placeholder='Digite aqui seu nome'
+            required
+            type="text"
+            {...register('nome')} 
+          />
+          <h2>Email</h2>
+          <input
+            placeholder='Digite aqui seu email'
+            required
+            type="email"
+            {...register('email')} 
+          />
+          <h2>Senha</h2>
+          <input
+            minLength="8"
+            placeholder='Digite aqui sua senha'
+            required
+            type="password"
+            {...register('senha')} 
+          />
+          <h2>Confirmar Senha</h2>
+          <input
+            placeholder='Digite novamente sua senha'
+            required
+            type="password"
+            {...register('confirmarSenha')}
+          />
+          <h2>Bio</h2>
+          <input
+            placeholder='Fale sobre você'
+            type="text"
+            required
+            {...register('bio')}
+          />
+          <h2>Contato</h2>
+          <input
+            placeholder='Opção de contato'
+            type="text"
+            required
+            {...register('contato')} 
+          />
+          <h2>Selecione o módulo</h2>
+          <select id="" required {...register('modulo')}> // Vincula o campo "modulo" ao formulário
+            <option value="Primeiro módulo (Introdução ao Frontend)">Primeiro módulo</option>
+            <option value="Segundo módulo (Frontend Avançado)">Segundo módulo</option>
+            <option value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo</option>
+            <option value="Quarto módulo (Backend Avançado)">Quarto módulo</option>
+          </select>
+          <button className='sign-up' type="submit">Cadastrar</button>
+        </form>
       </section>
     </RegisterStyle>
   );

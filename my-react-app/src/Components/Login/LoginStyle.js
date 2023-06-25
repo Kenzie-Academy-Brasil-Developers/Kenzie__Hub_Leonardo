@@ -13,7 +13,7 @@ export const LoginStyle = styled.header`
         align-items: center;
     }
 
-    div{
+    form{
         margin-top: 30px;
         align-items: center;
         display:flex;
@@ -29,7 +29,7 @@ export const LoginStyle = styled.header`
     }
     
     h1{
-        color: var(--grey-0, #F8F9FA);
+        color: #F8F9FA;
 
         font-size: 18px;
         font-family: 'Inter', sans-serif;
@@ -38,8 +38,8 @@ export const LoginStyle = styled.header`
     }
     input[type="email"], input[type="password"] {
         border-radius: 4px;
-        border: 1.218px solid var(--grey-0, #F8F9FA);
-        background: var(--grey-2, #343B41);
+        border: 1.218px solid  #F8F9FA;
+        background: #343B41;
 
         display: flex;
         width: 329.929px;
@@ -67,9 +67,8 @@ export const LoginStyle = styled.header`
     }
     .sign-up{
         border-radius: 4px;
-        border: 1.218px solid #868E96;
-        background: #868E96
-    }
+        background: #868E96;
+     }
     h2{
         margin-right: 90%;
         color: var(--grey-0, #F8F9FA);
@@ -112,7 +111,7 @@ export const LoginStyle = styled.header`
     }
     
     h1{
-        color: var(--grey-0, #F8F9FA);
+        color: #F8F9FA;
 
         font-size: 18px;
         font-family: 'Inter', sans-serif;
@@ -122,8 +121,8 @@ export const LoginStyle = styled.header`
     input[type="email"], input[type="password"] {
          color: #F8F9FA;
         border-radius: 4px;
-        border: 1.218px solid var(--grey-0, #F8F9FA);
-        background: var(--grey-2, #343B41);
+        border: 1.218px solid  #F8F9FA;
+        background: #343B41;
 
         display: flex;
         width: 264.658px;
@@ -151,7 +150,7 @@ export const LoginStyle = styled.header`
     .sign-up{
         border-radius: 4px;
         border: 1.218px solid #868E96;
-        background: #868E96
+        background: #868E96;
     }
     h2{
         margin-right: 90%;

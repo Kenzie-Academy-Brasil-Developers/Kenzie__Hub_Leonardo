@@ -91,7 +91,7 @@ export const RegisterStyle = styled.header`
         justify-content: center;
         align-items: center;
         gap: 10.152px;
-
+        text-decoration: none;
         border-radius: 4px;
         border: 1.218px solid #59323F;
         background: #59323F;
