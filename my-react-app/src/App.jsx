@@ -6,10 +6,9 @@ import RenderRegister from './Components/Register/Register'
 import { RoutesMain } from './Routes/RoutesMain'
 function App() {
   const [count, setCount] = useState(0)
-
   return (
     <>
-    <RoutesMain/>
+    <RoutesMain />
     <Reset/>
     <GlobalStyle/>
     </>
