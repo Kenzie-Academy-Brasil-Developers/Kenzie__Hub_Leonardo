@@ -45,8 +45,6 @@ function RenderDashboard({}) {
             <h4 className='modulePersona'>{module}</h4>
         </div>
         <main>
-            <h1>Que pena! Estamos em desenvolvimento :( </h1>
-            <h5>Nossa aplicação está em desenvolvimento, em breve teremos novidades</h5>
         </main>
     </DashboardStyled>
   );

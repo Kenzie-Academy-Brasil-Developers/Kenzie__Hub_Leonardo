@@ -7,6 +7,7 @@ export const LoginStyle = styled.header`
     flex-direction: column;
     justify-content: center;
     height: 100vh;
+
     section{
         display: flex;
         flex-direction: column;
@@ -30,7 +31,7 @@ export const LoginStyle = styled.header`
     
     h1{
         color: #F8F9FA;
-
+        
         font-size: 18px;
         font-family: 'Inter', sans-serif;
         font-weight: 700;
@@ -40,7 +41,7 @@ export const LoginStyle = styled.header`
         border-radius: 4px;
         border: 1.218px solid  #F8F9FA;
         background: #343B41;
-
+        
         display: flex;
         width: 329.929px;
         height: 48px;
@@ -49,17 +50,17 @@ export const LoginStyle = styled.header`
         gap: 10.152px;
         color: var(--grey-0);
     }
-
+    
     button{
-    display: flex;
-    width: 324px;
-    height: 48px;
-    padding: 0px 22.334px;
-    justify-content: center;
-    align-items: center;
-    gap: 10.152px;
+        display: flex;
+        width: 324px;
+        height: 48px;
+        padding: 0px 22.334px;
+        justify-content: center;
+        align-items: center;
+        gap: 10.152px;
     }
-
+    
     .Entry{
         border-radius: 4.061px;
         border: 1.218px solid  #FF577F;
@@ -68,7 +69,7 @@ export const LoginStyle = styled.header`
     .sign-up{
         border-radius: 4px;
         background: #868E96;
-     }
+    }
     h2{
         margin-right: 90%;
         color: var(--grey-0, #F8F9FA);
@@ -89,13 +90,13 @@ export const LoginStyle = styled.header`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100vh;
+    padding: 20px;
     section{
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-
+    
     div{
         margin-top: 30px;
         display: flex;
@@ -112,18 +113,32 @@ export const LoginStyle = styled.header`
     
     h1{
         color: #F8F9FA;
-
+        
         font-size: 18px;
         font-family: 'Inter', sans-serif;
         font-weight: 700;
         line-height: 28px;
     }
+
+    form{
+        margin-top: 30px;
+        align-items: center;
+        display:flex;
+        flex-direction:column;
+        padding: 42px 22px 42px 22px;
+        border-radius: 4px;
+        gap: 22px;
+        border-radius: 4px;
+        background: #212529;
+    }
+
+
     input[type="email"], input[type="password"] {
-         color: #F8F9FA;
+        color: #F8F9FA;
         border-radius: 4px;
         border: 1.218px solid  #F8F9FA;
         background: #343B41;
-
+        
         display: flex;
         width: 264.658px;
         height: 38.504px;
@@ -131,17 +146,17 @@ export const LoginStyle = styled.header`
         align-items: center;
         gap: 8.143px;
     }
-
+    
     button{
-    display: flex;
-    width: 259.902px;
-    height: 38.504px;
-    padding: 0px 22.334px;
-    justify-content: center;
-    align-items: center;
-    gap: 10.152px;
+        display: flex;
+        width: 259.902px;
+        height: 38.504px;
+        padding: 0px 22.334px;
+        justify-content: center;
+        align-items: center;
+        gap: 10.152px;
     }
-
+    
     .Entry{
         border-radius: 4.061px;
         border: 1.218px solid  #FF577F;
