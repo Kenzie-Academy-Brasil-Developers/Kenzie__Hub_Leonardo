@@ -12,7 +12,6 @@ function App() {
     <RoutesMain />
     <Reset/>
     <GlobalStyle/>
-    <RenderListTech/>
     </>
   )
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { LoginStyle } from "./ListStyle";
-function RenderListTech({}) {
-
+function RenderListTech({ ResponseTechs={ResponseTechs},
+  setResponseTechs={setResponseTechs}}) {
   return (
     <LoginStyle>
       <div>
@@ -9,12 +9,12 @@ function RenderListTech({}) {
       <button>+</button>
       </div>
       <ul>
-        {/* {ListTranfersHistory.map((transfer, index) => (
+        {ResponseTechs.map((tech, index) => (
       <li key={index}>
-        <h3></h3>
-        <h4></h4>
+        <h3>{tech.title}</h3>
+        <h4>{tech.status}</h4>
       </li>
-    ))} */}
+    ))}
       </ul>
     </LoginStyle>
   );

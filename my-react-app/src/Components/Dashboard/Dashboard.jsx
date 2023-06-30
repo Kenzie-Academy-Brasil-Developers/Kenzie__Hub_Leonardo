@@ -3,28 +3,43 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DashboardStyled } from './DashboardStyle';
 import axios from 'axios';
+import RenderListTech from '../ListTech/ListTech';
 
 function RenderDashboard({}) {
 
   const [nameUser,setNameUser] = useState('')
   const [module,setModule] = useState('')
+  const [ResponseTechs,setResponseTechs] = useState([])
+  const [counts , setcounts] = useState(0)
   const TokenUser = localStorage.getItem('@token')
   const IdUser = localStorage.getItem('@id')
   const api = 'https://kenziehub.herokuapp.com'; 
 
-  async function onSubmit(data){
-    try {
-      const response = await axios.get(`${api}/users/${IdUser}`, data);
-      setNameUser(response.data.name)
-      setModule(response.data.course_module)
-      console.log(response)
-    } catch (error) {
-      console.log(error)
+  function saveTechs(a){
+setResponseTechs(a)
+}
+  if(counts == 0){
+    async function onSubmit(data){
+
+      try {
+        const response = await axios.get(`${api}/users/${IdUser}`, data);
+        setNameUser(response.data.name)
+        setModule(response.data.course_module)
+        saveTechs(response.data.techs)
+        console.log(response.data.techs)
+        console.log(counts)
+      } catch (error) {
+        console.log(error)
+      }
     }
+    setcounts((prev)=>prev + 1)
+    onSubmit()
   }
-  onSubmit()
+
+  
   
   return (
+    <>
     <DashboardStyled>
         <header>
         <svg width="145" height="21" viewBox="0 0 145 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,6 +62,10 @@ function RenderDashboard({}) {
         <main>
         </main>
     </DashboardStyled>
+    <RenderListTech
+    ResponseTechs={ResponseTechs}
+    setResponseTechs={setResponseTechs}/>
+    </>
   );
 }
 

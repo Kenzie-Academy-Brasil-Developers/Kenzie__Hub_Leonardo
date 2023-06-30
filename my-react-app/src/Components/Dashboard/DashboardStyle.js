@@ -4,7 +4,6 @@ import {styled} from "styled-components"
 export const DashboardStyled = styled.header`
 @media (width > 769px) {
     width: 100%;
-    border: 1px solid red;
 
   header{
     padding: 0 20%;
