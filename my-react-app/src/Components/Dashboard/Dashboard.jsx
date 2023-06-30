@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { DashboardStyled } from './DashboardStyle';
 import axios from 'axios';
 import RenderListTech from '../ListTech/ListTech';
-
+import RenderModal from '../Modal/NewTech';
 function RenderDashboard({}) {
 
   const [nameUser,setNameUser] = useState('')
@@ -65,6 +65,7 @@ setResponseTechs(a)
     <RenderListTech
     ResponseTechs={ResponseTechs}
     setResponseTechs={setResponseTechs}/>
+    <RenderModal/>
     </>
   );
 }
