@@ -7,7 +7,7 @@ export default function RenderModal(){
 
     return(
         <ModalStyle>
-            {/* <h1 className={}>TESTE</h1 */}
+            <h1 className="testezada"> TESTEZADA </h1>
         </ModalStyle>
     )
 }

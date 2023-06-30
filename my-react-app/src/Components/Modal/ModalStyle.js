@@ -5,7 +5,7 @@ export const ModalStyle = styled.section`
 
 color: white;
 
-h1{
+.testezada{
     display: none;
 }
 
