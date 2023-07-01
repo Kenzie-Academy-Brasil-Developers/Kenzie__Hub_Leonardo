@@ -1,20 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { LoginStyle } from "./ListStyle";
 import { ModalStyle } from "../Modal/ModalStyle";
+import userProvider, { UserContext } from "../../Providers/ContextExample";
 function RenderListTech({ ResponseTechs={ResponseTechs},
   setResponseTechs={setResponseTechs}}) {
-    let countz = 0
 
+    
    function ShowModal(){
-    if(countz == 0){
-      document.querySelector(".testezada").style.display = 'flex'
-      countz == 1
-      console.log('rola')
-    }else if(countz == 1){
-      document.querySelector(".testezada").style.display = 'none'
-      countz == 0
-      console.log('rolona')
-    }
+      const modal = document.querySelector('.ModalNewTech')
+      modal.style.display = "flex"
     }
 
   return (

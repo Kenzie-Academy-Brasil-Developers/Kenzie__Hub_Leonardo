@@ -88,7 +88,7 @@ export const DashboardStyled = styled.header`
 
     border-radius: 4px;
     background: #212529;
-    color: var(--grey-0, #F8F9FA);
+    color: #F8F9FA;
     text-align: center;
     font-size: 12px;
     font-family: Inter;

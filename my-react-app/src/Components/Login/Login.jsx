@@ -26,7 +26,7 @@ function RenderLogin({}) {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(`${api}/sessions`, data);
-      toast(`Seja bem Vindo ${response.data.user.name}`)
+      toast.success(`Seja bem Vindo ${response.data.user.name}`)
       console.log(response.data);
       localStorage.clear();
       localStorage.setItem("@token",response.data.token)
@@ -39,7 +39,7 @@ function RenderLogin({}) {
       toast("Email ou Senha Incorreto");
       }
       else{
-      toast(error.response.data.message);
+      toast.warning(error.response.data.message);
       }
     }
   };

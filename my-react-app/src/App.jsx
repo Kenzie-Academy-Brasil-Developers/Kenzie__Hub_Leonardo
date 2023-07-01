@@ -5,13 +5,16 @@ import RenderLogin from './Components/Login/Login'
 import RenderRegister from './Components/Register/Register'
 import { RoutesMain } from './Routes/RoutesMain'
 import RenderListTech from './Components/ListTech/ListTech'
+import UserProvider from './Providers/ContextExample'
 function App() {
   const [count, setCount] = useState(0)
   return (
     <>
-    <RoutesMain />
-    <Reset/>
-    <GlobalStyle/>
+    <UserProvider>
+        <RoutesMain />
+            <Reset/>
+        <GlobalStyle/>
+    </UserProvider>
     </>
   )
 }
