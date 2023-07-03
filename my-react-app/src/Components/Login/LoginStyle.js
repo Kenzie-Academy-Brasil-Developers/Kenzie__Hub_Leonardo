@@ -69,6 +69,7 @@ export const LoginStyle = styled.header`
     .sign-up{
         border-radius: 4px;
         background: #868E96;
+        text-decoration: none;
     }
     h2{
         margin-right: 90%;
@@ -166,6 +167,7 @@ export const LoginStyle = styled.header`
         border-radius: 4px;
         border: 1.218px solid #868E96;
         background: #868E96;
+        text-decoration: none;
     }
     h2{
         margin-right: 90%;

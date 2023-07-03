@@ -17,9 +17,11 @@ export const RegisterStyle = styled.header`
         flex-direction: column;
         gap: 40px;
     }
+    .errorStyle{
+        color: #FF577F;
+    }
     .forms{
         display: flex;
-        height: 891.192px;
         padding: 42px 22px;
         flex-direction: column;
         gap: 22px;
@@ -128,11 +130,13 @@ export const RegisterStyle = styled.header`
         flex-direction: column;
         gap: 40px;
     }
+    .errorStyle{
+        color: #FF577F;
+    }
     .forms{
         margin-bottom: 20px;
         display: flex;
         max-width: 295.827px;
-        max-height: 709.959px;
         padding: 42px 22px;
         flex-direction: column;
         gap: 22px;

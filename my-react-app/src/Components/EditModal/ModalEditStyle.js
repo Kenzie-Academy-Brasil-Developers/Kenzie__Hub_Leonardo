@@ -1,7 +1,7 @@
 import {styled} from "styled-components"
 
 
-export const ModalStyle = styled.section`
+export const ModalEditStyle = styled.section`
     display: none;
     color: white;
     position: fixed;
@@ -15,6 +15,30 @@ export const ModalStyle = styled.section`
     background: #212529;
     box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
     
+    .ButtonsD{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .ex{
+        cursor: pointer;
+        display: flex;
+        width: 98px;
+        height: 48px;
+        padding: 0px 22.334px;
+        justify-content: center;
+        align-items: center;
+        gap: 10.152px;
+
+        border-radius: 4px;
+        border: 1.218px solid var(--grey-1, #868E96);
+        background: var(--grey-1, #868E96);
+        color: #FFF;
+    }
+    .ex:hover{
+        filter: brightness(75%)
+    }
+
     .X:hover{
         cursor: pointer;
         color: #FFF;
@@ -69,6 +93,7 @@ export const ModalStyle = styled.section`
     }
 
     input{
+        cursor:not-allowed;
         color: #FFF;
         display: flex;
         width: 100%;
@@ -109,6 +134,16 @@ export const ModalStyle = styled.section`
         font-style: normal;
         font-weight: 500;
         line-height: 26.394px;
+    }
+
+    @media (width < 426px) {
+        button{
+            width: 60%;
+        }
+
+        h5{
+            width: 30%;
+        }
     }
 
 `

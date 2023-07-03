@@ -4,37 +4,39 @@ import { RegisterStyle } from './RegisterStyle';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PasswordCheck from '../Test/TestPassword';
+import { registerSchema } from '../Zod/SchemasZod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { api } from '../Services/services';
 
 function RenderRegister({}) {
-  const { register, handleSubmit } = useForm();
-  const [senha,setSenha] = useState('')
-  const [confirmarSenha,setConfirmarSenha] = useState('')
+  const { register, handleSubmit ,formState : {errors}} = useForm({
+    resolver: zodResolver(registerSchema)
+  });
+  const navigate = useNavigate();
 
   const notify = (a) => {
     toast(a);
   };
+
   
-  const navigate = useNavigate();
+
+
   async function onSubmit (data){
-    
-    if(PasswordCheck(data.senha,data.confirmarSenha) == true){
       const requestData = {
           "email":  data.email,
           "password": data.senha,
           "name": data.nome,
           "bio": data.bio,
           "contact": data.contato,
-          "course_module": data.modulo
+          "course_module": data.course_module
           }
+      console.log(requestData)
+
     
-        await axios.post('https://kenziehub.herokuapp.com/users', requestData)
+        await api.post('/users', requestData)
           .then(response => {
-            console.log(requestData)
-            console.log(response);
             notify('Conta Criada')
             setTimeout(() => {
               navigate('/login');
@@ -42,12 +44,10 @@ function RenderRegister({}) {
             }, 3000);
           })
           .catch(error => {
-            console.error(error);
-          });
-    }else {
-      notify(PasswordCheck(data.senha,data.confirmarSenha))
-
-    }  }
+            notify(error.message)
+            console.log(error);
+          })
+    }
   return (
     <RegisterStyle>
       <section>
@@ -73,53 +73,57 @@ function RenderRegister({}) {
           <h2>Nome</h2>
           <input
             placeholder='Digite aqui seu nome'
-            required
             type="text"
             {...register('nome')} 
           />
+            {errors.nome ? <span className="errorStyle">{errors.nome.message}</span> : null}
+
           <h2>Email</h2>
           <input
             placeholder='Digite aqui seu email'
-            required
             type="email"
             {...register('email')} 
           />
+          {errors.email ? <span className="errorStyle">{errors.email.message}</span> : null}
           <h2>Senha</h2>
           <input
-            minLength="8"
             placeholder='Digite aqui sua senha'
-            required
             type="password"
-            {...register('senha')} 
+            {...register('senha')}
           />
+          {errors.senha ? <span className="errorStyle">{errors.senha.message}</span> : null}
           <h2>Confirmar Senha</h2>
           <input
             placeholder='Digite novamente sua senha'
-            required
             type="password"
-            {...register('confirmarSenha')}
+            {...register('confirm')}
           />
+          {errors.confirm ? <span className="errorStyle">{errors.confirm.message}</span> : null}
+
+
           <h2>Bio</h2>
           <input
             placeholder='Fale sobre você'
             type="text"
-            required
             {...register('bio')}
           />
+          {errors.bio ? <span className="errorStyle">{errors.bio.message}</span> : null}
           <h2>Contato</h2>
           <input
             placeholder='Opção de contato'
             type="text"
-            required
             {...register('contato')} 
           />
+          {errors.contato ? <span className="errorStyle">{errors.contato.message}</span> : null}
           <h2>Selecione o módulo</h2>
-          <select id="" required {...register('modulo')}> // Vincula o campo "modulo" ao formulário
+          <select  {...register('course_module')}> 
+            <option value="" hidden>Selecione um modulo</option>
             <option value="Primeiro módulo (Introdução ao Frontend)">Primeiro módulo</option>
             <option value="Segundo módulo (Frontend Avançado)">Segundo módulo</option>
             <option value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo</option>
             <option value="Quarto módulo (Backend Avançado)">Quarto módulo</option>
           </select>
+          {errors.course_module ? <span className="errorStyle">{errors.course_module.message}</span> : null}
           <button className='sign-up' type="submit">Cadastrar</button>
         </form>
       </section>

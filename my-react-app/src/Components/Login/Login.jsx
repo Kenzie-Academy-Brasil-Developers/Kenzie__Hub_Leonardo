@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { api } from '../Services/services';
 
 function RenderLogin({}) {
 
@@ -14,7 +15,9 @@ function RenderLogin({}) {
     toast(a);
   };
 
-  const api = 'https://kenziehub.herokuapp.com'; 
+
+  const kenzieHub = "https://kenziehub.herokuapp.com"
+
   const {
     handleSubmit,
     register,
@@ -25,9 +28,8 @@ function RenderLogin({}) {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(`${api}/sessions`, data);
+      const response = await api.post(`/sessions`, data);
       toast.success(`Seja bem Vindo ${response.data.user.name}`)
-      console.log(response.data);
       localStorage.clear();
       localStorage.setItem("@token",response.data.token)
       localStorage.setItem("@id",response.data.user.id)

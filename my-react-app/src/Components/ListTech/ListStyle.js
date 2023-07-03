@@ -45,7 +45,8 @@ width: 100%;
         background: #212529;
     }
 
-    li{
+    li{ 
+        cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -121,6 +122,7 @@ width: 100%;
     }
 
     li{
+        cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;

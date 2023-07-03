@@ -14,6 +14,10 @@ export const GlobalStyle = createGlobalStyle`
         --information: #155BCB;
     }
 
+    hmtl{
+        font-family: 'Inter', sans-serif;
+    }
+
 body{
     background-color: #121214;
 }

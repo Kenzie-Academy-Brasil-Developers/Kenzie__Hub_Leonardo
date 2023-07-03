@@ -1,23 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DashboardStyled } from './DashboardStyle';
 import axios from 'axios';
 import RenderListTech from '../ListTech/ListTech';
 import RenderModal from '../Modal/NewTech';
+import { UserContext } from '../../Providers/ContextExample';
+import RenderEditModal from '../EditModal/EditModal';
+import { ModalEditStyle } from '../EditModal/ModalEditStyle';
 function RenderDashboard({}) {
-
-  const [nameUser,setNameUser] = useState('')
   const [module,setModule] = useState('')
   const [ResponseTechs,setResponseTechs] = useState([])
   const [counts , setcounts] = useState(0)
   const TokenUser = localStorage.getItem('@token')
   const IdUser = localStorage.getItem('@id')
   const api = 'https://kenziehub.herokuapp.com'; 
+  const [NameUser,setNameUser] = useState('')
+  const [nameLi,setnameLi] = useState('')
+  const [idLi , setidLi] = useState(null)
 
   function saveTechs(a){
-setResponseTechs(a)
+  setResponseTechs(a)
 }
+
   if(counts == 0){
     async function onSubmit(data){
 
@@ -26,8 +31,6 @@ setResponseTechs(a)
         setNameUser(response.data.name)
         setModule(response.data.course_module)
         saveTechs(response.data.techs)
-        console.log(response.data.techs)
-        console.log(counts)
       } catch (error) {
         console.log(error)
       }
@@ -36,8 +39,6 @@ setResponseTechs(a)
     onSubmit()
   }
 
-  
-  
   return (
     <>
     <DashboardStyled>
@@ -56,7 +57,7 @@ setResponseTechs(a)
         <Link to="/login"><button onClick={()=>{localStorage.clear()}}>Sair</button></Link>
         </header>
         <div>
-            <h2>Olá, <span className='namePersona'>{nameUser}</span></h2>
+            <h2>Olá, <span className='namePersona'>{NameUser}</span></h2>
             <h4 className='modulePersona'>{module}</h4>
         </div>
         <main>
@@ -64,8 +65,20 @@ setResponseTechs(a)
     </DashboardStyled>
     <RenderListTech
     ResponseTechs={ResponseTechs}
-    setResponseTechs={setResponseTechs}/>
+    setResponseTechs={setResponseTechs}
+    nameLi={nameLi}
+    setnameLi={setnameLi}
+    idLi={idLi}
+    setidLi={setidLi}/>
     <RenderModal/>
+    <RenderEditModal 
+    idLi={idLi}
+    setidLi={setidLi}
+    nameLi={nameLi}
+    setnameLi={setnameLi}
+    ResponseTechs={ResponseTechs}
+    setResponseTechs={setResponseTechs}
+    />
     </>
   );
 }
