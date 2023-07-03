@@ -37,6 +37,7 @@ function RenderLogin({}) {
         navigate('/dashboard')
       }, 3000);
     } catch (error) {
+      console.log(error)
       if(error.response.data.message == "Incorrect email / password combination"){
       toast("Email ou Senha Incorreto");
       }
